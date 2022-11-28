@@ -1,7 +1,3 @@
-<h1 align="center">Hi there, I'm <a href="https://github.com/Pavel58-pnz" target="_blank">Pavel</a> 
-<img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
-<h3 align="center">I am a student of system administration, and this is a demo assignment for this specialty</h3>
-
 # DEMO2022
 ## [Задание](https://cdn.dp.worldskills.ru/esatk-prod/public_files/3452e3a5-d95b-4a3b-9a12-35e4bf991280-62d2325bc9e62929ba7e192fed6d6036.pdf)
 
