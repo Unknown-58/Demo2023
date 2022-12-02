@@ -1,10 +1,7 @@
-# DEMO2022
 # DEMO2023
 
-:book:[Задание](https://cdn.dp.worldskills.ru/esatk-prod/public_files/3452e3a5-d95b-4a3b-9a12-35e4bf991280-62d2325bc9e62929ba7e192fed6d6036.pdf)
 :closed_book:[Задание](https://cdn.dp.worldskills.ru/esatk-prod/public_files/3452e3a5-d95b-4a3b-9a12-35e4bf991280-62d2325bc9e62929ba7e192fed6d6036.pdf)
 
-:book:[Вариант#1](https://github.com/Unknown-58/Demo2022/blob/main/Doc/Demo2022.pdf)
 :closed_book:[Вариант#1](https://github.com/Unknown-58/Demo2022/blob/main/Doc/Demo2022.pdf)
 
 # Вариант #1
@@ -25,7 +22,11 @@
 |ISP             |Debian 11           |2 GB            |2               |3.3.3.1/24            |                                   |
 |                |                    |                |                |4.4.4.1/24            |                                   |
 |                |                    |                |                |5.5.5.1/24            |                                   |
-@@ -34,3 +34,14 @@
+|RTR-L           |Debian 11           |2 GB            |2/4             |4.4.4.100/24          |                                   |
+|                |                    |                |                |192.168.101.254/24    |                                   |
+|RTR-R           |Debian 11           |2 GB            |2/4             |5.5.5.100/24          |                                   |
+|                |                    |                |                |172.16.101.254 /24    |                                   |
+|SRV             |Debian 11/ Win 2019 |2 GB /4 GB      |2/4             |192.168.101.200/24    |Доп диски 2 шт по 5 GB             |
 |WEB-L           |Debian 11           |2 GB            |2               |192.168.101.100/24    |                                   |
 |WEB-R           |Debian 11           |2 GB            |2               |172.16.101.100/24     |                                   |
 |CLI             |Win 10              |4 GB            |4               |3.3.3.10/24           |                                   |
