@@ -1,8 +1,8 @@
-# DEMO2022
+# DEMO2023
 
-:book:[Задание](https://cdn.dp.worldskills.ru/esatk-prod/public_files/3452e3a5-d95b-4a3b-9a12-35e4bf991280-62d2325bc9e62929ba7e192fed6d6036.pdf)
+:closed_book:[Задание](https://cdn.dp.worldskills.ru/esatk-prod/public_files/3452e3a5-d95b-4a3b-9a12-35e4bf991280-62d2325bc9e62929ba7e192fed6d6036.pdf)
 
-:book:[Вариант#1](https://github.com/Unknown-58/Demo2022/blob/main/Doc/Demo2022.pdf)
+:closed_book:[Вариант#1](https://github.com/Unknown-58/Demo2022/blob/main/Doc/Demo2022.pdf)
 
 # Вариант #1
 
@@ -34,3 +34,14 @@
 |WEB-L           |Debian 11           |2 GB            |2               |192.168.101.100/24    |                                   |
 |WEB-R           |Debian 11           |2 GB            |2               |172.16.101.100/24     |                                   |
 |CLI             |Win 10              |4 GB            |4               |3.3.3.10/24           |                                   |
+
+### 1. На основе предоставленных ВМ или шаблонов ВМ создайте отсутствующие виртуальные машины в соответствии со схемой.
+Убедитесь что все ВМ созданы в соотведствии со схемой 
+
+![image](https://github.com/Unknown-58/Demo2022/blob/main/image/Demo02.jpg)
+
+SRV
+```powershell
+powershell
+Rename-Computer -NewName SRV
+```
