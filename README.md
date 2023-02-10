@@ -33,19 +33,11 @@
 
 ### 1. На основе предоставленных VM или шаблонов VM создайте отсутствующие виртуальные машины в соответствии со схемой.
 Убедитесь что все VM созданы в соотведствии со схемой 
-=======
-[Вариант если у вас Cisco вместо Linux](https://github.com/storm39mad/DEMO2022)
-=======
+
 [Вариант если у вас Cisco вместо Linux](https://github.com/vladimir-shalnev/DEMO2022)
 
 
 ### 1. На основе предоставленных ВМ или шаблонов ВМ создайте отсутствующие виртуальные машины в соответствии со схемой.
 Убедитесь что все ВМ созданы в соотведствии со схемой 
 
-![image](https://github.com/Unknown-58/Demo2022/blob/main/image/Demo02.jpg)
-
-SRV
-```powershell
-powershell
-Rename-Computer -NewName SRV
-```
+![image](https://raw.githubusercontent.com/Unknown-58/Demo2023/main/image/Demo02.jpg)
