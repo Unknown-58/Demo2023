@@ -46,18 +46,21 @@
 ### ISP:
 ```debian
 nano /etc/network/interface
-		auto ens{#}
-      iface ens{#} inet static
-      address 3.3.3.1
-      netmask 255.255.255.0
 
-      auto ens{#}
-      iface ens{#} inet static
-		address 4.4.4.1
-		netmask 255.255.255.0
-      
-		auto ens{#}
-		iface ens{#} inet static
-		address 5.5.5.1
-		netmask 255.255.255.0
+```
+``` debian
+	auto ens{#}
+   iface ens{#} inet static
+   address 3.3.3.1
+   netmask 255.255.255.0
+
+   auto ens{#}
+   iface ens{#} inet static
+	address 4.4.4.1
+	netmask 255.255.255.0
+
+	auto ens{#}
+	iface ens{#} inet static
+	address 5.5.5.1
+	netmask 255.255.255.0
 ```
