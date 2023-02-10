@@ -41,7 +41,6 @@
 Tcmdump
 Openssh-server (Для северов)
 Openssh-client (Для клиентов)
-1
 После настраиваем связь машин по таблице
 
 ### ISP:
