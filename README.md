@@ -91,7 +91,7 @@ iface ens{#} inet static
 address 192.168.101.254
 netmask 255.255.255.0
 ```
-### RTR-R:
+### RTR-R GRE-tunnel:
 ```debian
 nano /etc/network/interface 
 ```
@@ -117,7 +117,7 @@ iface ens{#} inet static
 address 172.16.101.254
 netmask 255.255.255.0
 ```
-### RTR-L:
+### RTR-L Gre-tunnel:
 ```debian
 nano /etc/network/interface
 ```
