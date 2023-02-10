@@ -38,9 +38,9 @@
 
 
 Устанавливаем необходимые пакеты:
-•	Tcmdump
-•	Openssh-server (Для северов)
-•	Openssh-client (Для клиентов)
+<p>Tcmdump</p>
+<p>Openssh-server (Для северов)</p>
+<p>Openssh-client (Для клиентов)</p>
 После настраиваем связь машин по таблице
 
 ### ISP:
@@ -91,7 +91,7 @@ netmask 255.255.255.0
 ```
 ### RTR-R:
 ```debian
-nano /etc/network/interface
+nano /etc/network/interface 
 ```
 ```debian
 auto ens{#}
