@@ -37,10 +37,10 @@
 ![image](https://raw.githubusercontent.com/Unknown-58/Demo2023/main/image/Demo02.jpg)
 
 
-Устанавливаем необходимые пакеты:
-<p>Tcmdump</p>
+### Устанавливаем необходимые пакеты:
+Tcmdump
 Openssh-server (Для северов)
-<p>Openssh-client (Для клиентов)</p>
+Openssh-client (Для клиентов)
 После настраиваем связь машин по таблице
 
 ### ISP:
