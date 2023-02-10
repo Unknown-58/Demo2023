@@ -1,8 +1,8 @@
 # DEMO2023
 
-[Задание](https://github.com/Unknown-58/Demo2023/blob/main/Doc/Demo2022.pdf)
+## [Задание](https://github.com/Unknown-58/Demo2023/blob/main/Doc/Demo2022.pdf)
 
-[Вариант если у вас Cisco вместо Linux](https://github.com/vladimir-shalnev/DEMO2022)
+## [Вариант если у вас Cisco вместо Linux](https://github.com/vladimir-shalnev/DEMO2022)
 
 # Вариант #1
 
