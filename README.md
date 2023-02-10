@@ -46,7 +46,6 @@
 ### ISP:
 ```debian
 nano /etc/network/interface
-
 ```
 ``` debian
 auto ens{#}
@@ -62,5 +61,57 @@ netmask 255.255.255.0
 auto ens{#}
 iface ens{#} inet static
 address 5.5.5.1
+netmask 255.255.255.0
+```
+### RTR-L:
+```debian
+nano /etc/network/interface
+```
+```debian
+auto ens{#}
+iface ens{#} inet static
+address 4.4.4.100
+netmask 255.255.255.0
+gateway 4.4.4.1
+
+#GRE-tunnel
+auto gre1
+iface gre1 inet static
+address 10.10.10.1
+netmask 255.255.255.252
+mode gre
+local 4.4.4.100
+endpoint 5.5.5.100
+post-up ip route add 172.16.101.0/24 via 10.10.10.2 dev gre1
+
+auto ens{#}
+iface ens{#} inet static
+address 192.168.101.254
+netmask 255.255.255.0
+```
+### RTR-R:
+```debian
+nano /etc/network/interface
+```
+```debian
+auto ens{#}
+iface ens{#} inet static
+address 5.5.5.100
+netmask 255.255.255.0
+gateway 5.5.5.1
+
+#GRE-tunnel
+auto gre1
+iface gre1 inet static
+address 10.10.10.2
+netmask 255.255.255.252
+mode gre
+local 5.5.5.100 
+endpoint 4.4.4.100
+post-up ip route add 192.168.101.0/24 via 10.10.10.1 dev gre1
+
+auto ens{#}
+iface ens{#} inet static
+address 172.16.101.254
 netmask 255.255.255.0
 ```
