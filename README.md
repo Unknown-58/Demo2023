@@ -115,3 +115,62 @@ iface ens{#} inet static
 address 172.16.101.254
 netmask 255.255.255.0
 ```
+### RTR-L:
+```debian
+nano /etc/network/interface
+```
+```debian
+auto ens{#}
+iface ens{#} inet static
+address 4.4.4.100
+netmask 255.255.255.0
+gateway 4.4.4.1
+
+#GRE-tunnel
+auto gre1
+iface gre1 inet static
+address 10.10.10.1
+netmask 255.255.255.252
+mode gre
+local 4.4.4.100
+endpoint 5.5.5.100
+post-up ip route add 172.16.101.0/24 via 10.10.10.2 dev gre1
+
+auto ens{#}
+iface ens{#} inet static
+address 192.168.101.254
+netmask 255.255.255.0
+```
+## Создаём IPsec.conf на обоих роутерах RTR-L и RTR-R
+```debian
+nano /etc/ipsec.conf
+```
+```debian
+config setup
+   charondebug="all"
+   uniqueids=yes
+
+conn %default
+   ikelifetime=60m
+   keylife=20m
+   rekeymargin=3m
+   keyingtries=1
+
+conn gre-tunnel
+   left=4.4.4.100
+   leftsubnet=192.168.101.0/24
+   leftid=10.10.10.1
+   right=5.5.5.100
+   rightsubnet=172.16.101.0/24
+   rightid=10.10.10.2
+   keyexchange=ikev1
+   auto=start
+   type=tunnel
+```
+## Создаём IPsec.secrets на обоих роутерах RTR-L и RTR-R
+```debian
+nano /etc/ipsec.secrets
+```
+```debian
+4.4.4.100 5.5.5.100 : PSK "<Создаём любой ключ. Главное больше 12 символов верхних и нижних регистров.>"
+```
