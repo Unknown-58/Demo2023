@@ -35,3 +35,29 @@
 Убедитесь что все ВМ созданы в соотведствии со схемой 
 
 ![image](https://raw.githubusercontent.com/Unknown-58/Demo2023/main/image/Demo02.jpg)
+
+
+Устанавливаем необходимые пакеты:
+•	Tcmdump
+•	Openssh-server (Для северов)
+•	Openssh-client (Для клиентов)
+После настраиваем связь машин по таблице
+
+### ISP:
+```debian
+nano /etc/network/interface
+		auto ens{#}
+      iface ens{#} inet static
+      address 3.3.3.1
+      netmask 255.255.255.0
+
+      auto ens{#}
+      iface ens{#} inet static
+		address 4.4.4.1
+		netmask 255.255.255.0
+      
+		auto ens{#}
+		iface ens{#} inet static
+		address 5.5.5.1
+		netmask 255.255.255.0
+```
