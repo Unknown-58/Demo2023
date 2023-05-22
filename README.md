@@ -36,13 +36,37 @@
 
 ![image](https://raw.githubusercontent.com/Unknown-58/Demo2023/main/image/Demo02.jpg)
 
+Устанавливаем необходимые пакеты > Обязательно установить стандартные системные утилиты < :
 
-### Устанавливаем необходимые пакеты >Обязательно установить стандартные системные утилиты< :
-- Tcmdump
-- Firewalld
-- Openssh-client (Для клиентов)
-- Openssh-server (Для северов)
-- 
+### Проверяет наличие обновлений для пакетов 
+```debian 
+apt-get update
+```
+А также обновляем их
+```debian 
+apt-get upgrade
+``` 
+### ISP:
+```debian
+apt install bind9 bind9utils dnsutils chrony openssh-server tcpdump -y
+```
+### RTR-R:
+```debian
+apt install bind9 bind9utils dnsutils chrony openssh-server tcpdump -y
+```
+### RTR-L:
+```debian
+apt install bind9 bind9utils dnsutils chrony openssh-server tcpdump -y
+```
+### WEB-L:
+```debian
+apt install bind9 bind9utils dnsutils chrony openssh-server tcpdump -y
+```
+### WEB-R:
+```debian
+apt install bind9 bind9utils dnsutils chrony openssh-server tcpdump -y
+```
+
 После настраиваем связь машин по таблице
 
 ### ISP:
