@@ -212,6 +212,10 @@ nano /etc/ssh/sshd_config
 PermitRootLogin yes
 #StrictModes yes
 ```
+```debian
+systemctl restart ssh
+```
+## GRE-Tunnel:
 ### RTR-R GRE-tunnel:
 ```debian
 nano /etc/network/interface 
