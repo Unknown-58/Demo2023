@@ -216,7 +216,40 @@ PermitRootLogin yes
 systemctl restart ssh
 ```
 Аналогично делаем на следующих машинах `RTR-L` `RTR-R` `WEB-R` 
-## GRE-Tunnel:
+## Настройка `Firewalld`:
+Заходим `RTR-L` и проверяем активность зон
+```debian
+firewalld-cmd --get-active-zones
+```
+Посмотрим какие зоны мы можем настроить
+```debian
+firewalld-cmd --list-all-zones
+```
+Создаём зоны внутренею `trusted` и внешнию `external`
+
+`trusted`
+```debian
+firewalld-cmd --zone=trusted --add-interface=ens{ISP}
+```
+`external`
+```debian
+firewalld-cmd --zone=external --add-interface=ens{WEB-L}
+```
+Проверяем создались ли зоны:
+```debian
+firewalld-cmd --get-active-zones
+```
+Разрешаем доступы для `http` `https` `DNS`:
+```debian
+firewalld-cmd --zone=external --add-service=http
+```
+```debian
+firewalld-cmd --zone=external --add-service=https
+```
+```debian
+firewalld-cmd --zone=external --add-service=dns
+```
+## Настройка `GRE-Tunnel`:
 ### RTR-R GRE-tunnel:
 ```debian
 nano /etc/network/interface 
