@@ -277,7 +277,7 @@ firewall-cmd --zone=external --add-forward-port=port=2222:proto=tcp:toport=22:to
 ```
 И для VPN пробрасываем порт `123456`:
 ```debian
-firewall-cmd --zone=external --add-forward-port=12345/udp
+firewall-cmd --zone=external --add-port=12345/udp
 ```
 Порт нужно поменять на свой
 Проверяем настройки `firewalld`:
