@@ -348,7 +348,7 @@ firewall-cmd --runtime-to-permanent
 ```debian
 firewall-cmd --reload
 ```
-## Настройка `GRE-Tunnel`:
+## Настройка `GRE-tunnel`:
 ### RTR-R GRE-tunnel:
 ```debian
 nano /etc/network/interfaces
@@ -375,7 +375,7 @@ iface ens36 inet static
 address 172.16.101.254
 netmask 255.255.255.0
 ```
-### RTR-L Gre-tunnel:
+### RTR-L GRE-tunnel:
 ```debian
 nano /etc/network/interfaces
 ```
