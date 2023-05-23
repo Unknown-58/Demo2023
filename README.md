@@ -127,6 +127,10 @@ sysctl -p
 ```
 net.ipv4.ip_forward=1
 ```
+Для проверки `ens{#}` используем
+```debian
+ip a
+```
 ### ISP:
 ```debian
 nano /etc/network/interfaces
@@ -250,7 +254,10 @@ firewalld-cmd --zone=external --add-service=https
 firewalld-cmd --zone=external --add-service=dns
 ```
 Пробрасываем следующие порты `80` `443` `22` `53` port-SSH: `2222` `2244` могу поменяться:
-Пробрасываем порт для WEB-L `80` `22` `2222` 
+Пробрасываем порт для WEB-L `80` `22` `2222`
+```debian
+firewalld-cmd --zone=external --add-for=http
+```
 ## Настройка `GRE-Tunnel`:
 ### RTR-R GRE-tunnel:
 ```debian
