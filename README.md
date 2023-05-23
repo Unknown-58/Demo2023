@@ -282,7 +282,7 @@ firewall-cmd --zone=external --add-port=12345/udp
 Порт нужно поменять на свой
 Проверяем настройки `firewalld`:
 ```debian
-firewall-cmd --zone=external --list-all-
+firewall-cmd --zone=external --list-all
 ```
 Сохраняем настройки `firewalld`:
 ```debian
