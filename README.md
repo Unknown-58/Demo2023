@@ -235,62 +235,62 @@ ssh localhost
 ## Настройка `Firewalld`:
 ### Заходим `RTR-L` и проверяем активность зон
 ```debian
-firewalld-cmd --get-active-zones
+firewall-cmd --get-active-zones
 ```
 Посмотрим какие зоны мы можем настроить
 ```debian
-firewalld-cmd --list-all-zones
+firewall-cmd --list-all-zones
 ```
 Создаём зоны внутренею `trusted` и внешнию `external`:
 
 В сторону ISP, смотрит `trusted`:
 ```debian
-firewalld-cmd --zone=trusted --add-interface=ens33
+firewall-cmd --zone=trusted --add-interface=ens33
 ```
 В сторону WEB-L, смотрит `external`:
 ```debian
-firewalld-cmd --zone=external --add-interface=ens36
+firewall-cmd --zone=external --add-interface=ens36
 ```
 Проверяем создались ли зоны:
 ```debian
-firewalld-cmd --get-active-zones
+firewall-cmd --get-active-zones
 ```
 Разрешаем доступы для `http` `https` `DNS`:
 ```debian
-firewalld-cmd --zone=external --add-service=http
+firewall-cmd --zone=external --add-service=http
 ```
 ```debian
-firewalld-cmd --zone=external --add-service=https
+firewall-cmd --zone=external --add-service=https
 ```
 ```debian
-firewalld-cmd --zone=external --add-service=dns
+firewall-cmd --zone=external --add-service=dns
 ```
 Пробрасываем следующие порты `80` `443` `22` `53` port-SSH: `2222` `2244` могу поменяться:
 Пробрасываем порты `80` `22` `2222` на WEB-L для `http` `https` `SSH`:
 ```debian
-firewalld-cmd --zone=external --add-forward-port=2222:proto=tcp:toport=22:toaddr=192.168.101.100
+firewall-cmd --zone=external --add-forward-port=2222:proto=tcp:toport=22:toaddr=192.168.101.100
 ```
 IP-address может поменяться
 Пробрасываем порт `53` на SRV для DNS:
 ```debian
-firewalld-cmd --zone=external --add-forward-port=2222:proto=tcp:toport=22:toaddr=192.168.101.200
+firewall-cmd --zone=external --add-forward-port=2222:proto=tcp:toport=22:toaddr=192.168.101.200
 ```
 И для VPN пробрасываем порт `123456`:
 ```debian
-firewalld-cmd --zone=external --add-forward-port=12345/udp
+firewall-cmd --zone=external --add-forward-port=12345/udp
 ```
 Порт нужно поменять на свой
 Проверяем настройки `firewalld`:
 ```debian
-firewalld-cmd --zone=external --list-all-
+firewall-cmd --zone=external --list-all-
 ```
 Сохраняем настройки `firewalld`:
 ```debian
-firewalld-cmd --runtime-to-permanent
+firewall-cmd --runtime-to-permanent
 ```
 Перезагружаем `firewalld`:
 ```debian
-firewalld-cmd --reload
+firewall-cmd --reload
 ```
 ## Настройка `GRE-Tunnel`:
 ### RTR-R GRE-tunnel:
