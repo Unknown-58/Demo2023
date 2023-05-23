@@ -1,8 +1,8 @@
 # DEMO2023
 
-## :books: [Задание](https://github.com/Unknown-58/Demo2023/blob/main/Doc/Demo2022.pdf)
+### :books: [Задание](https://github.com/Unknown-58/Demo2023/blob/main/Doc/Demo2022.pdf)
 
-## :books: [Вариант если у вас Cisco вместо Linux](https://github.com/vladimir-shalnev/DEMO2022)
+### :books: [Вариант если у вас Cisco вместо Linux](https://github.com/vladimir-shalnev/DEMO2022)
 
 # Вариант #1
 
@@ -36,7 +36,11 @@
 
 ![image](https://raw.githubusercontent.com/Unknown-58/Demo2023/main/image/Demo02.jpg)
 
-Устанавливаем необходимые пакеты > Обязательно установить стандартные системные утилиты < :
+## Изменение имена машин (Меняем {name} на всех машина: например (ISP, RTR-R, RTR-L т.д. )) 
+```debian 
+echo {name} > /etc/hostname
+```
+## Устанавливаем необходимые пакеты > Обязательно установить стандартные системные утилиты < :
 
 ### Проверяет наличие обновлений для пакетов 
 ```debian 
@@ -52,23 +56,22 @@ apt install bind9 bind9utils dnsutils chrony openssh-server tcpdump -y
 ```
 ### RTR-R:
 ```debian
-apt install bind9 bind9utils dnsutils chrony openssh-server tcpdump -y
+apt install openssh-server firewalld chrony tcpdump -y
 ```
 ### RTR-L:
 ```debian
-apt install bind9 bind9utils dnsutils chrony openssh-server tcpdump -y
+apt install openssh-server firewalld chrony tcpdump -y
 ```
 ### WEB-L:
 ```debian
-apt install bind9 bind9utils dnsutils chrony openssh-server tcpdump -y
+apt install chrony openssh-server cifs-utils -y
 ```
 ### WEB-R:
 ```debian
-apt install bind9 bind9utils dnsutils chrony openssh-server tcpdump -y
+apt install chrony openssh-server cifs-utils -y
 ```
 
 После настраиваем связь машин по таблице
-
 ### ISP:
 ```debian
 nano /etc/network/interface
