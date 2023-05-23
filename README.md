@@ -136,18 +136,18 @@ ip a
 nano /etc/network/interfaces
 ```
 ```debian
-auto ens{#}
-iface ens{#} inet static
+auto ens33
+iface ens33 inet static
 address 3.3.3.1
 netmask 255.255.255.0
 
-auto ens{#}
-iface ens{#} inet static
+auto ens36
+iface ens36 inet static
 address 4.4.4.1
 netmask 255.255.255.0
 
-auto ens{#}
-iface ens{#} inet static
+auto ens37
+iface ens37 inet static
 address 5.5.5.1
 netmask 255.255.255.0
 ```
@@ -160,14 +160,14 @@ service networking restart
 nano /etc/network/interfaces
 ```
 ```debian
-auto ens{#}
-iface ens{#} inet static
+auto ens33
+iface ens33 inet static
 address 4.4.4.100
 netmask 255.255.255.0
 gateway 4.4.4.1
 
-auto ens{#}
-iface ens{#} inet static
+auto ens36
+iface ens36 inet static
 address 192.168.101.254
 netmask 255.255.255.0
 ```
@@ -176,14 +176,14 @@ netmask 255.255.255.0
 nano /etc/network/interface
 ```
 ```debian
-auto ens{#}
-iface ens{#} inet static
+auto ens33
+iface ens33 inet static
 address 5.5.5.100
 netmask 255.255.255.0
 gateway 5.5.5.1
 
-auto ens{#}
-iface ens{#} inet static
+auto ens36
+iface ens36 inet static
 address 172.16.101.254
 netmask 255.255.255.0
 ```
@@ -192,8 +192,8 @@ netmask 255.255.255.0
 nano /etc/network/interfaces
 ```
 ```debian
-auto ens{#}
-iface ens{#} inet static
+auto ens33
+iface ens33 inet static
 address 192.168.101.100
 netmask 255.255.255.0
 gateway 192.168.101.254
@@ -203,8 +203,8 @@ gateway 192.168.101.254
 nano /etc/network/interfaces
 ```
 ```debian
-auto ens{#}
-iface ens{#} inet static
+auto ens33
+iface ens33 inet static
 address 172.16.101.100
 netmask 255.255.255.0
 gateway 172.16.101.254
@@ -227,6 +227,10 @@ PermitRootLogin yes
 ```debian
 systemctl restart ssh
 ```
+Проверяем работаспособность `SSH` пишем:
+```debian
+ssh localhost
+```
 Аналогично делаем на следующих машинах `RTR-L` `RTR-R` `WEB-R` 
 ## Настройка `Firewalld`:
 Заходим `RTR-L` и проверяем активность зон
@@ -237,15 +241,15 @@ firewalld-cmd --get-active-zones
 ```debian
 firewalld-cmd --list-all-zones
 ```
-Создаём зоны внутренею `trusted` и внешнию `external`
+Создаём зоны внутренею `trusted` и внешнию `external`:
 
-`trusted`
+В сторону ISP, смотрит `trusted`:
 ```debian
-firewalld-cmd --zone=trusted --add-interface=ens{ISP}
+firewalld-cmd --zone=trusted --add-interface=ens33
 ```
-`external`
+В сторону WEB-L, смотрит `external`:
 ```debian
-firewalld-cmd --zone=external --add-interface=ens{WEB-L}
+firewalld-cmd --zone=external --add-interface=ens36
 ```
 Проверяем создались ли зоны:
 ```debian
@@ -262,18 +266,33 @@ firewalld-cmd --zone=external --add-service=https
 firewalld-cmd --zone=external --add-service=dns
 ```
 Пробрасываем следующие порты `80` `443` `22` `53` port-SSH: `2222` `2244` могу поменяться:
-Пробрасываем порт для WEB-L `80` `22` `2222`
+Пробрасываем порты `80` `22` `2222` на WEB-L для `http` `https` `SSH`:
 ```debian
-firewalld-cmd --zone=external --add-forward-port=2222:proto=tcp:toport=22:toaddr={IP-address WEB-L}
+firewalld-cmd --zone=external --add-forward-port=2222:proto=tcp:toport=22:toaddr=192.168.101.100
 ```
+IP-address может поменяться
+Пробрасываем порт `53` на SRV для DNS:
+```debian
+firewalld-cmd --zone=external --add-forward-port=2222:proto=tcp:toport=22:toaddr=192.168.101.200
+```
+И для VPN пробрасываем порт `123456`:
+```debian
+firewalld-cmd --zone=external --add-forward-port=12345/udp
+```
+Порт нужно поменять на свой
+Проверяем настройки `firewalld`:
+```debian
+firewalld-cmd --zone=external --list-all-
+```
+
 ## Настройка `GRE-Tunnel`:
 ### RTR-R GRE-tunnel:
 ```debian
 nano /etc/network/interfaces
 ```
 ```debian
-auto ens{#}
-iface ens{#} inet static
+auto ens33
+iface ens33 inet static
 address 5.5.5.100
 netmask 255.255.255.0
 gateway 5.5.5.1
@@ -288,8 +307,8 @@ local 5.5.5.100
 endpoint 4.4.4.100
 post-up ip route add 192.168.101.0/24 via 10.10.10.1 dev gre1
 
-auto ens{#}
-iface ens{#} inet static
+auto ens36
+iface ens36 inet static
 address 172.16.101.254
 netmask 255.255.255.0
 ```
@@ -298,8 +317,8 @@ netmask 255.255.255.0
 nano /etc/network/interfaces
 ```
 ```debian
-auto ens{#}
-iface ens{#} inet static
+auto ens33
+iface ens33 inet static
 address 4.4.4.100
 netmask 255.255.255.0
 gateway 4.4.4.1
@@ -314,8 +333,8 @@ local 4.4.4.100
 endpoint 5.5.5.100
 post-up ip route add 172.16.101.0/24 via 10.10.10.2 dev gre1
 
-auto ens{#}
-iface ens{#} inet static
+auto ens36
+iface ens36 inet static
 address 192.168.101.254
 netmask 255.255.255.0
 ```
