@@ -64,11 +64,11 @@ apt install openssh-server firewalld chrony tcpdump -y
 ```
 ### WEB-L:
 ```debian
-apt install chrony openssh-server cifs-utils -y
+apt install host chrony openssh-server cifs-utils -y
 ```
 ### WEB-R:
 ```debian
-apt install chrony openssh-server cifs-utils -y
+apt install host chrony openssh-server cifs-utils -y
 ```
 
 После настраиваем связь машин по таблице
