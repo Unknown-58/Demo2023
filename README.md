@@ -41,7 +41,39 @@
 echo {name} > /etc/hostname
 ```
 ## Устанавливаем необходимые пакеты > Обязательно установить стандартные системные утилиты < :
+### Удаляем всё что находится в `source.list` и меняем на следующие репозитории:
+```debian
+deb http://mirror.corbina.net/debian/ buster main
+deb-src http://mirror.corbina.net/debian/ buster main
 
+deb http://security.debian.org/debian-security buster/updates main
+deb-src http://security.debian.org/debian-security buster/updates main
+
+deb http://mirror.corbina.net/debian/ buster-updates main
+deb-src http://mirror.corbina.net/debian/ buster-updates main
+```
+или
+```debian
+deb http://deb.debian.org/debian bullseye main contrib non-free
+deb-src http://deb.debian.org/debian bullseye main contrib non-free
+
+deb http://deb.debian.org/debian-security/ bullseye-security main contrib non-free
+deb-src http://deb.debian.org/debian-security/ bullseye-security main contrib non-free
+
+deb http://deb.debian.org/debian bullseye-updates main contrib non-free
+deb-src http://deb.debian.org/debian bullseye-updates main contrib non-free
+```
+или
+```debian
+deb http://mirror.yandex.ru/debian bullseye main
+deb-src http://mirror.yandex.ru/debian bullseye main
+
+deb http://mirror.yandex.ru/debian bullseye-updates main
+deb-src http://mirror.yandex.ru/debian bullseye-updates main
+
+deb https://mirror.yandex.ru/debian-security bullseye-security main
+deb-src https://mirror.yandex.ru/debian-security bullseye-security main
+```
 ### Проверяет наличие обновлений для пакетов 
 ```debian 
 apt-get update
