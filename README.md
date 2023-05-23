@@ -56,11 +56,19 @@ apt install bind9 bind9utils dnsutils chrony openssh-server tcpdump -y
 ```
 ### RTR-R:
 ```debian
-apt install openssh-server firewalld chrony tcpdump -y
+apt install openssh-server firewalld chrony tcpdump wireguard wireguard-tools -y
+```
+или (если настраиваете IPsec)
+```debian
+apt install openssh-server firewalld chrony tcpdump ipsec -y
 ```
 ### RTR-L:
 ```debian
-apt install openssh-server firewalld chrony tcpdump -y
+apt install openssh-server firewalld chrony tcpdump wireguard wireguard-tools -y
+```
+или (если настраиваете IPsec)
+```debian
+apt install openssh-server firewalld chrony tcpdump ipsec -y
 ```
 ### WEB-L:
 ```debian
