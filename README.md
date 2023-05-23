@@ -43,6 +43,9 @@ echo {name} > /etc/hostname
 ## Устанавливаем необходимые пакеты > Обязательно установить стандартные системные утилиты < :
 ### Удаляем всё что находится в `source.list` и меняем на следующие репозитории:
 ```debian
+nano /etc/apt/sourses.list
+```
+```debian
 deb http://mirror.corbina.net/debian/ buster main
 deb-src http://mirror.corbina.net/debian/ buster main
 
@@ -143,20 +146,48 @@ address 4.4.4.100
 netmask 255.255.255.0
 gateway 4.4.4.1
 
-#GRE-tunnel
-auto gre1
-iface gre1 inet static
-address 10.10.10.1
-netmask 255.255.255.252
-mode gre
-local 4.4.4.100
-endpoint 5.5.5.100
-post-up ip route add 172.16.101.0/24 via 10.10.10.2 dev gre1
-
 auto ens{#}
 iface ens{#} inet static
 address 192.168.101.254
 netmask 255.255.255.0
+```
+### RTR-R:
+```debian
+nano /etc/network/interface
+```
+```debian
+auto ens{#}
+iface ens{#} inet static
+address 5.5.5.100
+netmask 255.255.255.0
+gateway 5.5.5.1
+
+auto ens{#}
+iface ens{#} inet static
+address 172.16.101.254
+netmask 255.255.255.0
+```
+### WEB-L:
+```debian
+nano /etc/network/interface
+```
+```debian
+auto ens{#}
+iface ens{#} inet static
+address 192.168.101.100
+netmask 255.255.255.0
+gateway 192.168.101.254
+```
+### WEB-R:
+```debian
+nano /etc/network/interface
+```
+```debian
+auto ens{#}
+iface ens{#} inet static
+address 172.16.101.100
+netmask 255.255.255.0
+gateway 172.16.101.254
 ```
 ### RTR-R GRE-tunnel:
 ```debian
