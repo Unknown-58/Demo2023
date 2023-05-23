@@ -95,7 +95,7 @@ apt install openssh-server firewalld chrony tcpdump wireguard wireguard-tools -y
 ```
 или (если настраиваете IPsec)
 ```debian
-apt install openssh-server firewalld chrony tcpdump ipsec -y
+apt install openssh-server firewalld chrony tcpdump strongswan -y
 ```
 ### RTR-L:
 ```debian
@@ -103,7 +103,7 @@ apt install openssh-server firewalld chrony tcpdump wireguard wireguard-tools -y
 ```
 или (если настраиваете IPsec)
 ```debian
-apt install openssh-server firewalld chrony tcpdump ipsec -y
+apt install openssh-server firewalld chrony tcpdump strongswan -y
 ```
 ### WEB-L:
 ```debian
