@@ -129,7 +129,7 @@ net.ipv4.ip_forward=1
 ```
 ### ISP:
 ```debian
-nano /etc/network/interface
+nano /etc/network/interfaces
 ```
 ```debian
 auto ens{#}
@@ -149,7 +149,7 @@ netmask 255.255.255.0
 ```
 ### RTR-L:
 ```debian
-nano /etc/network/interface
+nano /etc/network/interfaces
 ```
 ```debian
 auto ens{#}
@@ -181,7 +181,7 @@ netmask 255.255.255.0
 ```
 ### WEB-L:
 ```debian
-nano /etc/network/interface
+nano /etc/network/interfaces
 ```
 ```debian
 auto ens{#}
@@ -192,7 +192,7 @@ gateway 192.168.101.254
 ```
 ### WEB-R:
 ```debian
-nano /etc/network/interface
+nano /etc/network/interfaces
 ```
 ```debian
 auto ens{#}
@@ -249,10 +249,12 @@ firewalld-cmd --zone=external --add-service=https
 ```debian
 firewalld-cmd --zone=external --add-service=dns
 ```
+Пробрасываем следующие порты `80` `443` `22` `53` port-SSH: `2222` `2244` могу поменяться:
+Пробрасываем порт для WEB-L `80` `22` `2222` 
 ## Настройка `GRE-Tunnel`:
 ### RTR-R GRE-tunnel:
 ```debian
-nano /etc/network/interface 
+nano /etc/network/interfaces
 ```
 ```debian
 auto ens{#}
@@ -278,7 +280,7 @@ netmask 255.255.255.0
 ```
 ### RTR-L Gre-tunnel:
 ```debian
-nano /etc/network/interface
+nano /etc/network/interfaces
 ```
 ```debian
 auto ens{#}
