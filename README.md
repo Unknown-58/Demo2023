@@ -201,6 +201,17 @@ address 172.16.101.100
 netmask 255.255.255.0
 gateway 172.16.101.254
 ```
+## Настройка SSH:
+### Заходим на WEB-L:
+```debian
+nano /etc/ssh/sshd_config
+```
+Раскоментируем `PermitRootLogin` и пришем `yes`:
+```debian
+#LoginGraceTime 2m
+PermitRootLogin yes
+#StrictModes yes
+```
 ### RTR-R GRE-tunnel:
 ```debian
 nano /etc/network/interface 
