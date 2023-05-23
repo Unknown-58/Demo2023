@@ -268,12 +268,12 @@ firewall-cmd --zone=external --add-service=dns
 Пробрасываем следующие порты `80` `443` `22` `53` port-SSH: `2222` `2244` могу поменяться:
 Пробрасываем порты `80` `22` `2222` на WEB-L для `http` `https` `SSH`:
 ```debian
-firewall-cmd --zone=external --add-forward-port=2222:proto=tcp:toport=22:toaddr=192.168.101.100
+firewall-cmd --zone=external --add-forward-port=port=2222:proto=tcp:toport=22:toaddr=192.168.101.100
 ```
 IP-address может поменяться
 Пробрасываем порт `53` на SRV для DNS:
 ```debian
-firewall-cmd --zone=external --add-forward-port=2222:proto=tcp:toport=22:toaddr=192.168.101.200
+firewall-cmd --zone=external --add-forward-port=port=2222:proto=tcp:toport=22:toaddr=192.168.101.200
 ```
 И для VPN пробрасываем порт `123456`:
 ```debian
@@ -292,6 +292,7 @@ firewall-cmd --runtime-to-permanent
 ```debian
 firewall-cmd --reload
 ```
+### RTR-R
 ## Настройка `GRE-Tunnel`:
 ### RTR-R GRE-tunnel:
 ```debian
