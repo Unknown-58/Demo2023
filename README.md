@@ -114,12 +114,24 @@ apt install host chrony openssh-server cifs-utils -y
 apt install host chrony openssh-server cifs-utils -y
 ```
 
-После настраиваем связь машин по таблице
+## После настраиваем сетевую связность машин
+### Раскоментируем `net.ipv4.ip_forward=1` для всех машин:
+```debian
+nano /etc/sysctl.conf
+```
+Проверяем ipv4
+```debian
+sysctl -p
+```
+Должно показать
+```
+net.ipv4.ip_forward=1
+```
 ### ISP:
 ```debian
 nano /etc/network/interface
 ```
-``` debian
+```debian
 auto ens{#}
 iface ens{#} inet static
 address 3.3.3.1
