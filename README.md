@@ -233,7 +233,7 @@ ssh localhost
 ```
 Аналогично делаем на следующих машинах `RTR-L` `RTR-R` `WEB-R` 
 ## Настройка `Firewalld`:
-Заходим `RTR-L` и проверяем активность зон
+### Заходим `RTR-L` и проверяем активность зон
 ```debian
 firewalld-cmd --get-active-zones
 ```
@@ -284,7 +284,14 @@ firewalld-cmd --zone=external --add-forward-port=12345/udp
 ```debian
 firewalld-cmd --zone=external --list-all-
 ```
-
+Сохраняем настройки `firewalld`:
+```debian
+firewalld-cmd --runtime-to-permanent
+```
+Перезагружаем `firewalld`:
+```debian
+firewalld-cmd --reload
+```
 ## Настройка `GRE-Tunnel`:
 ### RTR-R GRE-tunnel:
 ```debian
