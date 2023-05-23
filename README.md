@@ -215,6 +215,7 @@ PermitRootLogin yes
 ```debian
 systemctl restart ssh
 ```
+Аналогично делаем на следующих машинах `RTR-L` `RTR-R` `WEB-R` 
 ## GRE-Tunnel:
 ### RTR-R GRE-tunnel:
 ```debian
