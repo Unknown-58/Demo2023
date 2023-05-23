@@ -127,7 +127,7 @@ sysctl -p
 ```
 net.ipv4.ip_forward=1
 ```
-Для проверки `ens{#}` используем
+Для проверки `ens{#}` используем:
 ```debian
 ip a
 ```
@@ -150,6 +150,10 @@ auto ens{#}
 iface ens{#} inet static
 address 5.5.5.1
 netmask 255.255.255.0
+```
+Провести перезагрузку сервиса на всех машинах после настройки:
+```debian 
+service networking restart
 ```
 ### RTR-L:
 ```debian
@@ -212,9 +216,13 @@ nano /etc/ssh/sshd_config
 ```
 Раскоментируем `PermitRootLogin` и пришем `yes`:
 ```debian
+#Authentication:
+
 #LoginGraceTime 2m
 PermitRootLogin yes
 #StrictModes yes
+#MaxAuthTries 6
+#MaxSessions 10
 ```
 ```debian
 systemctl restart ssh
@@ -256,7 +264,7 @@ firewalld-cmd --zone=external --add-service=dns
 Пробрасываем следующие порты `80` `443` `22` `53` port-SSH: `2222` `2244` могу поменяться:
 Пробрасываем порт для WEB-L `80` `22` `2222`
 ```debian
-firewalld-cmd --zone=external --add-for=http
+firewalld-cmd --zone=external --add-forward-port=2222:proto=tcp:toport=22:toaddr={IP-address WEB-L}
 ```
 ## Настройка `GRE-Tunnel`:
 ### RTR-R GRE-tunnel:
