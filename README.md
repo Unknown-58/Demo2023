@@ -173,7 +173,7 @@ netmask 255.255.255.0
 ```
 ### RTR-R:
 ```debian
-nano /etc/network/interface
+nano /etc/network/interfaces
 ```
 ```debian
 auto ens33
