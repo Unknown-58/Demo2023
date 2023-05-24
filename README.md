@@ -232,7 +232,7 @@ systemctl restart ssh
 ssh localhost
 ```
 Аналогично делаем на следующих машинах `RTR-L` `RTR-R` `WEB-R` 
-# Настройка `Firewalld`:
+## Настройка `Firewalld`:
 ### Заходим на `RTR-L` и проверяем активность зон:
 ```debian
 firewall-cmd --get-active-zones
