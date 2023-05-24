@@ -470,7 +470,7 @@ mkdir /etc/wireguard/keys
 ```
 Переходим `RTR-L`:
 ```debian
-spc cli-sec.key srv-pub.key 5.5.5.100:/etc/wireguard/keys
+scp cli-sec.key srv-pub.key 5.5.5.100:/etc/wireguard/keys
 ```
 Провереяем на `RTR-R` ключи:
 ```debian
