@@ -41,7 +41,7 @@
 echo {name} > /etc/hostname
 ```
 ## Устанавливаем необходимые пакеты > Обязательно установить стандартные системные утилиты < :
-### Удаляем всё что находится в `source.list` и меняем на следующие репозитории:
+### Удаляем всё что находится в `sourcses.list` и меняем на следующие репозитории:
 ```debian
 nano /etc/apt/sourses.list
 ```
@@ -368,6 +368,7 @@ netmask 255.255.255.252
 mode gre
 local 5.5.5.100 
 endpoint 4.4.4.100
+pre-up ip tunnel add gre1 mode gre remote 4.4.4.100 local 5.5.5.100
 post-up ip route add 192.168.101.0/24 via 10.10.10.1 dev gre1
 
 auto ens36
@@ -394,6 +395,7 @@ netmask 255.255.255.252
 mode gre
 local 4.4.4.100
 endpoint 5.5.5.100
+pre-up ip tunnel add gre1 mode gre remote 5.5.5.100 local 4.4.4.100
 post-up ip route add 172.16.101.0/24 via 10.10.10.2 dev gre1
 
 auto ens36
