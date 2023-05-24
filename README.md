@@ -403,7 +403,7 @@ iface ens36 inet static
 address 192.168.101.254
 netmask 255.255.255.0
 ```
-## Создаём IPsec.conf на обоих роутерах RTR-L и RTR-R
+## Заходим в IPsec.conf на обоих роутерах RTR-L: 
 ```debian
 nano /etc/ipsec.conf
 ```
@@ -418,21 +418,49 @@ conn %default
    rekeymargin=3m
    keyingtries=1
 
-conn gre-tunnel
-   left=4.4.4.100
-   leftsubnet=192.168.101.0/24
-   leftid=10.10.10.1
-   right=5.5.5.100
-   rightsubnet=172.16.101.0/24
-   rightid=10.10.10.2
-   keyexchange=ikev1
+conn vpn-ipsec
    auto=start
    type=tunnel
+   authby=secret
+   left=4.4.4.100
+   leftsubnet=192.168.101.0/24
+   right=5.5.5.100
+   rightsubnet=172.16.101.0/24
+   keyexchange=ikev1
 ```
-## Создаём IPsec.secrets на обоих роутерах RTR-L и RTR-R
+### RTR-R:
+```debian
+nano /etc/ipsec.conf
+```
+```debian
+config setup
+   charondebug="all"
+   uniqueids=yes
+
+conn %default
+   ikelifetime=60m
+   keylife=20m
+   rekeymargin=3m
+   keyingtries=1
+
+conn vpn-ipsec
+   auto=start
+   type=tunnel
+   authby=secret
+   left=5.5.5.100
+   leftsubnet=172.16.101.0/24
+   right=4.4.4.100
+   rightsubnet=192.168.101.0/24
+   keyexchange=ikev1
+```
+## Прописываем IPsec.secrets на обоих роутерах RTR-L и RTR-R
 ```debian
 nano /etc/ipsec.secrets
 ```
 ```debian
-4.4.4.100 5.5.5.100 : PSK "<Создаём любой ключ.Главное больше 12 символов верхних и нижних регистров.>"
+4.4.4.100 5.5.5.100 : PSK "qwertyuiop123456789"
+```
+Проверяем в ISP через `tcpdump`:
+```debian
+tcpdump | grep ESP
 ```
