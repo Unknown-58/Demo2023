@@ -209,7 +209,7 @@ address 172.16.101.100
 netmask 255.255.255.0
 gateway 172.16.101.254
 ```
-## Настройка SSH:
+## Настройка `SSH`:
 ### Заходим на WEB-L:
 ```debian
 nano /etc/ssh/sshd_config
@@ -232,7 +232,7 @@ systemctl restart ssh
 ssh localhost
 ```
 Аналогично делаем на следующих машинах `RTR-L` `RTR-R` `WEB-R` 
-## Настройка `Firewalld`:
+# Настройка `Firewalld`:
 ### Заходим на `RTR-L` и проверяем активность зон:
 ```debian
 firewall-cmd --get-active-zones
@@ -439,7 +439,7 @@ cat srv-sec.key cli-pub.key >> /etc/wireguard/wg0.conf
 - Там где `Address` - ставим любой IP-address например: `1.1.1.1/30`
 - Там где `ListPort` - ставим наш `123456`
 - Там где `AllowedIPs` - должно быть IP-address `1.1.1.0/30` и наше посети `172.16.101.0/24`
-Теперь сравниваем:
+#### Теперь сравниваем:
 ```debian
 cat /etc/wireguard/wg0.conf
 ```
@@ -484,7 +484,7 @@ cat cli-sec.key srv-pub.key >> /etc/wireguard/wg0.conf
 - Там где `Address` - ставим любой IP-address например: `1.1.1.2/30`
 - Там где `Endpoint` - ставим наш `4.4.4.100:123456`
 - Там где `AllowedIPs` - должно быть IP-address `1.1.1.0/30` и наше посети `192.168.101.0/24`
-Теперь сравниваем:
+#### Теперь сравниваем:
 ```debian
 cat /etc/wireguard/wg0.conf
 ```
@@ -508,8 +508,9 @@ wg show all
 ```debian
 ip route
 ```
-
-## Настройка IPSEC:
+## Настройка `DNS`:
+Заходим на всех машинах `resolv.conf`:
+## Настройка `IPSEC`:
 ### Заходим в `ipsec.conf` на обоих роутерах `RTR-L`: 
 ```debian
 nano /etc/ipsec.conf
