@@ -243,11 +243,11 @@ firewall-cmd --list-all-zones
 ```
 Создаём зоны внутренею `trusted` и внешнию `external`:
 
-В сторону ISP, смотрит `trusted`:
+В сторону ISP, смотрит `external`:
 ```debian
 firewall-cmd --zone=trusted --add-interface=ens33
 ```
-В сторону WEB-L, смотрит `external`:
+В сторону WEB-L, смотрит `trusted`:
 ```debian
 firewall-cmd --zone=external --add-interface=ens36
 ```
@@ -302,11 +302,11 @@ firewall-cmd --list-all-zones
 ```
 Создаём зоны внутренею `trusted` и внешнию `external`:
 
-В сторону ISP, смотрит `trusted`:
+В сторону ISP, смотрит `external`:
 ```debian
 firewall-cmd --zone=trusted --add-interface=ens33
 ```
-В сторону WEB-R, смотрит `external`:
+В сторону WEB-R, смотрит `trusted`:
 ```debian
 firewall-cmd --zone=external --add-interface=ens36
 ```
