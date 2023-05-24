@@ -403,7 +403,69 @@ iface ens36 inet static
 address 192.168.101.254
 netmask 255.255.255.0
 ```
-## Заходим в IPsec.conf на обоих роутерах RTR-L: 
+## Настройка Wireguard:
+### Заходим в `RTR-L`:
+Создаём папку для ключей:
+```debian
+mkdir /etc/wireguard/keys
+```
+```debian
+cd /etc/wireguard/keys
+```
+```debian
+ls
+```
+Создаём ключ для `SRV`:
+```debian
+wg genkey | tee srv-sec.key | wg pubkey > srv-pub.key
+```
+Проверяем появились ли ключи:
+```debian
+ls -l
+```
+Создаём ключ для `CLI`:
+```debian
+wg genkey | tee cli-sec.key | wg pubkey > cli-pub.key
+```
+Проверяем появились ли ключи:
+```debian
+ls -l
+```
+Прописываем ключи в конфиг:
+```debian
+cat srv-sec.key cli-pub.key >> /etc/wireguard/wg0.conf
+```
+Заходим и редактируем этот файл `/etc/wireguard/wg0.conf`:
+- Там где `Address` - ставим любой IP-address например: `1.1.1.1/30`
+- Там где `ListPort` - ставим наш `123456`
+- Там где `AllowedIPs` - должно быть IP-address `1.1.1.0/30` и наше посети `172.16.101.0/24`
+### Теперь сравниваем:
+```debian
+cat /etc/wireguard/wg0.conf
+```
+```debian
+cat srv-sec.key
+```
+```debian
+cat cli-pub.key
+```
+Запускаем сервис:
+```debian
+systemctl enable --now wg-quick@wg0
+```
+Проверяем:
+```debian
+systemctl status wg-quick@wg0
+```
+```debian
+wg show all
+```
+```debian
+ip route
+```
+Далее переходим на `RTR-R`:
+## Настройка IPSEC:
+### Заходим в `ipsec.conf` на обоих роутерах `RTR-L`: 
 ```debian
 nano /etc/ipsec.conf
 ```
@@ -453,14 +515,22 @@ conn vpn-ipsec
    rightsubnet=192.168.101.0/24
    keyexchange=ikev1
 ```
-## Прописываем IPsec.secrets на обоих роутерах RTR-L и RTR-R
+## Прописываем IPsec.secrets на обоих роутерах `RTR-L` и `RTR-R`:
 ```debian
 nano /etc/ipsec.secrets
 ```
 ```debian
 4.4.4.100 5.5.5.100 : PSK "qwertyuiop123456789"
 ```
-Проверяем в ISP через `tcpdump`:
+Запускаем `ipsec` или перезагружаем:
+```debian
+ipsec start
+```
+или
+```debian
+ipsec restart
+```
+Проверяем в `ISP` через `tcpdump`:
 ```debian
 tcpdump | grep ESP
 ```
