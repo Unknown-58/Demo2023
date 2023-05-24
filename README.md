@@ -273,7 +273,7 @@ firewall-cmd --zone=external --add-forward-port=port=2222:proto=tcp:toport=22:to
 IP-address может поменяться
 Пробрасываем порт `53` на SRV для DNS:
 ```debian
-firewall-cmd --zone=external --add-forward-port=port=2222:proto=tcp:toport=22:toaddr=192.168.101.200
+firewall-cmd --zone=external --add-forward-port=port=53:proto=udp:toport=53:toaddr=192.168.101.200
 ```
 И для VPN пробрасываем порт `123456`:
 ```debian
