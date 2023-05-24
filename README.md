@@ -363,7 +363,7 @@ gateway 5.5.5.1
 #GRE-tunnel
 auto gre1
 iface gre1 inet static
-address 10.10.10.2
+address 1.1.1.2
 netmask 255.255.255.252
 mode gre
 local 5.5.5.100 
@@ -390,7 +390,7 @@ gateway 4.4.4.1
 #GRE-tunnel
 auto gre1
 iface gre1 inet static
-address 10.10.10.1
+address 1.1.1.1
 netmask 255.255.255.252
 mode gre
 local 4.4.4.100
@@ -403,7 +403,7 @@ iface ens36 inet static
 address 192.168.101.254
 netmask 255.255.255.0
 ```
-## Настройка Wireguard:
+## Настройка `Wireguard`:
 ### Заходим в `RTR-L`:
 Создаём папку для ключей:
 ```debian
@@ -439,7 +439,7 @@ cat srv-sec.key cli-pub.key >> /etc/wireguard/wg0.conf
 - Там где `Address` - ставим любой IP-address например: `1.1.1.1/30`
 - Там где `ListPort` - ставим наш `123456`
 - Там где `AllowedIPs` - должно быть IP-address `1.1.1.0/30` и наше посети `172.16.101.0/24`
-### Теперь сравниваем:
+Теперь сравниваем:
 ```debian
 cat /etc/wireguard/wg0.conf
 ```
@@ -463,7 +463,52 @@ wg show all
 ```debian
 ip route
 ```
-Далее переходим на `RTR-R`:
+### Далее переходим на `RTR-R`:
+Создаём папку для ключей:
+```debian
+mkdir /etc/wireguard/keys
+```
+Переходим `RTR-L`:
+```debian
+spc cli-sec.key srv-pub.key 5.5.5.100:/etc/wireguard/keys
+```
+Провереяем на `RTR-R` ключи:
+```debian
+ls -l /etc/wireguard/keys
+```
+Прописываем ключи в конфиг:
+```debian
+cat cli-sec.key srv-pub.key >> /etc/wireguard/wg0.conf
+```
+Заходим и редактируем этот файл `/etc/wireguard/wg0.conf`:
+- Там где `Address` - ставим любой IP-address например: `1.1.1.2/30`
+- Там где `Endpoint` - ставим наш `4.4.4.100:123456`
+- Там где `AllowedIPs` - должно быть IP-address `1.1.1.0/30` и наше посети `192.168.101.0/24`
+Теперь сравниваем:
+```debian
+cat /etc/wireguard/wg0.conf
+```
+```debian
+cat srv-sec.key
+```
+```debian
+cat cli-pub.key
+```
+Запускаем сервис:
+```debian
+systemctl enable --now wg-quick@wg0
+```
+Проверяем:
+```debian
+systemctl status wg-quick@wg0
+```
+```debian
+wg show all
+```
+```debian
+ip route
+```
+
 ## Настройка IPSEC:
 ### Заходим в `ipsec.conf` на обоих роутерах `RTR-L`: 
 ```debian
