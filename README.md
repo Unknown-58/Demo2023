@@ -569,6 +569,66 @@ domain int.demo.wsr
 search int.demo.wsr
 nameserver 4.4.4.100
 ```
+Далее необходимо отредактировать файл `/etc/bind/named.conf.options`:
+```debian
+listeb-on { any; };
+recursion no;
+allow-query { any; };
+dssec-validation no;
+
+listen-on-v6 { no; };
+```
+Теперь второй файл `/etc/bind/named.conf.local`:
+```debian
+zone "demo.wsr" {
+      type master;
+      allow-transfer { 4.4.4.100; };
+      file "/opt/dns/demo.wsr/zone";
+};
+```
+Создаём папку:
+```debian 
+mkdir /opt/dns
+```
+Производим копирование:
+```debian 
+cp /etc/bind/db.local /opt/dns/demowsr.zone
+```
+Предоставляем доступ:
+```debian 
+chmod 665 /opt/dns/demo.wsr.zone
+```
+Меняем параметры безопасности `/etc/apparmor.d/usr.sbin.named`, вот так должно выглядить:
+```debian 
+/etc/bind/** r,
+/var/lib/bind/** rw,
+/var/lib/bind/ rw,
+/var/cache/bind/** lrw,
+/var/cache/bind/ rw,
+/opt/dns/** rw,
+```
+Перезагружаем `service apparmor restart`.
+Файл зон `nano /opt/dns/demo.wsr.zone`.
+```debian 
+;
+; BIND data file for local loopback interface
+;
+$TTL     604800
+@        IN       SOA      demo.wsr.   root.demo.wsr. (
+                                  3          ; Serial
+                             604800          ; Refresh
+                              86400          ; Retry
+                            2419200          ; Expire
+                             604800 )        ; Negative Cache TTL
+:
+
+@        IN       NS       demo.wsr.
+@        IN       A        3.3.3.1
+isp               A        3.3.3.1
+www               A        4.4.4.100
+www               A        4.4.4.100
+internet          CHAME    isp
+```
 ## Настройка `IPSEC`:
 ### Заходим в `ipsec.conf` на обоих роутерах `RTR-L`: 
 ```debian
