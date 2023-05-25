@@ -535,17 +535,17 @@ ip route
 ```
 ## Настройка `DNS`:
 Заходим на всех машинах `resolv.conf`:
-`ISP`:
+#### `ISP`:
 ```debian
 domain demo.wsr
 search demo.wsr
 nameserver 3.3.3.1
 ```
-`CLI`:
+##### `CLI`:
 ![image](https://github.com/Unknown-58/Demo2023/blob/main/image/1.png)
-`SRV`:
+##### `SRV`:
 ![image](https://github.com/Unknown-58/Demo2023/blob/main/image/2.png)
-`RTR-L`:
+##### `RTR-L`:
 ```debian
 domain int.demo.wsr
 search int.demo.wsr
