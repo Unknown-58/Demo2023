@@ -534,7 +534,7 @@ wg show all
 ip route
 ```
 ## Настройка `DNS`:
-Заходим на всех машинах `resolv.conf`:
+Заходим на всех машинах `/etc/resolv.conf`:
 #### `ISP`:
 ```debian
 domain demo.wsr
