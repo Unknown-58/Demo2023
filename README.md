@@ -436,9 +436,21 @@ ls -l
 cat srv-sec.key cli-pub.key >> /etc/wireguard/wg0.conf
 ```
 Заходим и редактируем этот файл `/etc/wireguard/wg0.conf`:
-- Там где `Address` - ставим любой IP-address например: `1.1.1.1/30`
-- Там где `ListPort` - ставим наш `123456`
-- Там где `AllowedIPs` - должно быть IP-address `1.1.1.0/30` и наше посети `172.16.101.0/24`
+```debian
+[Interface]
+Address = 1.1.1.1/30
+ListPort = 12345
+PrivateKey = cdexswzaqQAZWSXEDC123456789 
+
+[Peer]
+PublicKey = 123456789QAZWSXEDCcdexswzaq
+AllowedIPs = 1.1.1.0/30, 172.16.1.0/24
+```
+- Там где `Address` - ставим любой IP-address например: `1.1.1.1/30`.
+- Там где `ListPort` - ставим наш `123456`.
+- Там где `AllowedIPs` - должно быть IP-address `1.1.1.0/30` и наше посети `172.16.101.0/24`.
+- Там где `PrivateKey` - первый созданный ключ.
+- Там где `PubliKey` - второй созданный ключ.
 #### Теперь сравниваем:
 ```debian
 cat /etc/wireguard/wg0.conf
@@ -481,9 +493,22 @@ ls -l /etc/wireguard/keys
 cat cli-sec.key srv-pub.key >> /etc/wireguard/wg0.conf
 ```
 Заходим и редактируем этот файл `/etc/wireguard/wg0.conf`:
-- Там где `Address` - ставим любой IP-address например: `1.1.1.2/30`
-- Там где `Endpoint` - ставим наш `4.4.4.100:123456`
-- Там где `AllowedIPs` - должно быть IP-address `1.1.1.0/30` и наше посети `192.168.101.0/24`
+```debian
+[Interface]
+Address = 1.1.1.2/30
+PrivateKey = Сюда первый ключ
+
+[Peer]
+PublicKey = Сюда второй ключ
+Endpoint = 4.4.4.100:12345
+AllowedIPs = 1.1.1.0/30, 192.168.1.0/24
+PersistentKeeplive = 10
+```
+- Там где `Address` - ставим любой IP-address например: `1.1.1.2/30`.
+- Там где `Endpoint` - ставим наш `4.4.4.100:123456`.
+- Там где `AllowedIPs` - должно быть IP-address `1.1.1.0/30` и наше посети `192.168.101.0/24`.
+- Там где `PrivateKey` - первый созданый ключ.
+- Там где `PubliKey` - второй созданый ключ.
 #### Теперь сравниваем:
 ```debian
 cat /etc/wireguard/wg0.conf
@@ -510,6 +535,41 @@ ip route
 ```
 ## Настройка `DNS`:
 Заходим на всех машинах `resolv.conf`:
+`ISP`:
+```debian
+domain demo.wsr
+search demo.wsr
+nameserver 3.3.3.1
+```
+`CLI`:
+
+`SRV`:
+
+
+`RTR-L`:
+```debian
+domain int.demo.wsr
+search int.demo.wsr
+nameserver 192.168.100.200
+```
+`RTR-R`:
+```debian
+domain int.demo.wsr
+search int.demo.wsr
+nameserver 4.4.4.100
+```
+`WEB-L`:
+```debian
+domain int.demo.wsr
+search int.demo.wsr
+nameserver 192.168.100.200
+```
+`WEB-R`:
+```debian
+domain int.demo.wsr
+search int.demo.wsr
+nameserver 4.4.4.100
+```
 ## Настройка `IPSEC`:
 ### Заходим в `ipsec.conf` на обоих роутерах `RTR-L`: 
 ```debian
