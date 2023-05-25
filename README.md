@@ -542,10 +542,9 @@ search demo.wsr
 nameserver 3.3.3.1
 ```
 `CLI`:
-
+![image](https://github.com/Unknown-58/Demo2023/blob/main/image/1.png)
 `SRV`:
-
-
+![image](https://github.com/Unknown-58/Demo2023/blob/main/image/2.png)
 `RTR-L`:
 ```debian
 domain int.demo.wsr
