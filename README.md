@@ -350,9 +350,28 @@ firewall-cmd --reload
 ```
 ## Настройка `GRE-tunnel`:
 ### RTR-R GRE-tunnel:
+Временный тунель после перезагрузки исчезнет:
+```debian
+ip tunnel add gre1 mode gre remote 4.4.4.100 local 5.5.5.100 ttl 255
+ip addr add 1.1.1.2/30 dev gre1
+ip link set gre1 up
+ip route add 192.168.1.0/24 via 1.1.1.1 dev gre1
+```
+Не исчезает после переустановки):
 ```debian
 nano /etc/network/interfaces
 ```
+либо так
+```debian
+auto gre1
+iface gre1 inet static
+    pre-up sudo ip tunnel add gre1 mode gre remote 4.4.4.100 local 5.5.5.100 ttl 255
+    pre-up sudo ip addr add 1.1.1.2/30 dev gre1
+    up sudo ip link set gre1 up
+    post-up sudo ip route add 192.168.1.0/24 via 1.1.1.1 dev gre1
+    post-down sudo ip link set gre1 down
+```
+либо вот так)
 ```debian
 auto ens33
 iface ens33 inet static
@@ -377,9 +396,28 @@ address 172.16.101.254
 netmask 255.255.255.0
 ```
 ### RTR-L GRE-tunnel:
+Временный тунель после перезагрузки исчезнет:
+```debian
+ip tunnel add gre1 mode gre remote 5.5.5.100 local 4.4.4.100 ttl 255
+ip addr add 1.1.1.1/30 dev gre1
+ip link set gre1 up
+ip route add 172.16.1.0/24 via 1.1.1.2 dev gre1
+```
+Не исчезает после переустановки):
 ```debian
 nano /etc/network/interfaces
 ```
+либо так
+```debian
+auto gre1
+iface gre1 inet static
+    pre-up sudo ip tunnel add gre1 mode gre remote 5.5.5.100 local 4.4.4.100 ttl 255
+    pre-up sudo ip addr add 1.1.1.1/30 dev gre1
+    up sudo ip link set gre1 up
+    post-up sudo ip route add 172.16.1.0/24 via 1.1.1.2 dev gre1
+    post-down sudo ip link set gre1 down
+```
+либо вот так)
 ```debian
 auto ens33
 iface ens33 inet static
