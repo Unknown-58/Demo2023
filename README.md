@@ -629,6 +629,16 @@ www               A        4.4.4.100
 www               A        4.4.4.100
 internet          CHAME    isp
 ```
+Проверяем работоспособность `systemctl status named`
+```debian 
+host www.demo.wsr
+```
+```debian 
+host internet.demo.wsr
+```
+```debian 
+host isp.demo.wsr
+```
 ## Настройка `IPSEC`:
 ### Заходим в `ipsec.conf` на обоих роутерах `RTR-L`: 
 ```debian
