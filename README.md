@@ -245,11 +245,11 @@ firewall-cmd --list-all-zones
 
 В сторону ISP, смотрит `external`:
 ```debian
-firewall-cmd --zone=trusted --add-interface=ens33
+firewall-cmd --zone=external --add-interface=ens33
 ```
 В сторону WEB-L, смотрит `trusted`:
 ```debian
-firewall-cmd --zone=external --add-interface=ens36
+firewall-cmd --zone=trusted --add-interface=ens36
 ```
 Проверяем создались ли зоны:
 ```debian
