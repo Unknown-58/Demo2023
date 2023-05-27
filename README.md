@@ -304,11 +304,11 @@ firewall-cmd --list-all-zones
 
 В сторону ISP, смотрит `external`:
 ```debian
-firewall-cmd --zone=trusted --add-interface=ens33
+firewall-cmd --zone=external --add-interface=ens33
 ```
 В сторону WEB-R, смотрит `trusted`:
 ```debian
-firewall-cmd --zone=external --add-interface=ens36
+firewall-cmd --zone=trusted --add-interface=ens36
 ```
 Проверяем создались ли зоны:
 ```debian
@@ -477,7 +477,7 @@ cat srv-sec.key cli-pub.key >> /etc/wireguard/wg0.conf
 ```debian
 [Interface]
 Address = 1.1.1.1/30
-ListPort = 12345
+ListenPort = 12345
 PrivateKey = cdexswzaqQAZWSXEDC123456789 
 
 [Peer]
@@ -485,7 +485,7 @@ PublicKey = 123456789QAZWSXEDCcdexswzaq
 AllowedIPs = 1.1.1.0/30, 172.16.1.0/24
 ```
 - Там где `Address` - ставим любой IP-address например: `1.1.1.1/30`.
-- Там где `ListPort` - ставим наш `123456`.
+- Там где `ListenPort` - ставим наш `123456`.
 - Там где `AllowedIPs` - должно быть IP-address `1.1.1.0/30` и наше посети `172.16.101.0/24`.
 - Там где `PrivateKey` - первый созданный ключ.
 - Там где `PubliKey` - второй созданный ключ.
@@ -540,7 +540,7 @@ PrivateKey = Сюда первый ключ
 PublicKey = Сюда второй ключ
 Endpoint = 4.4.4.100:12345
 AllowedIPs = 1.1.1.0/30, 192.168.1.0/24
-PersistentKeeplive = 10
+PersistentKeepalive = 10
 ```
 - Там где `Address` - ставим любой IP-address например: `1.1.1.2/30`.
 - Там где `Endpoint` - ставим наш `4.4.4.100:123456`.
@@ -612,7 +612,7 @@ nameserver 4.4.4.100
 listeb-on { any; };
 recursion no;
 allow-query { any; };
-dssec-validation no;
+dnssec-validation no;
 
 listen-on-v6 { no; };
 ```
@@ -621,7 +621,7 @@ listen-on-v6 { no; };
 zone "demo.wsr" {
       type master;
       allow-transfer { 4.4.4.100; };
-      file "/opt/dns/demo.wsr/zone";
+      file "/opt/dns/demo.wsr.zone";
 };
 ```
 Создаём папку:
@@ -630,7 +630,7 @@ mkdir /opt/dns
 ```
 Производим копирование:
 ```debian 
-cp /etc/bind/db.local /opt/dns/demowsr.zone
+cp /etc/bind/db.local /opt/dns/demo.wsr.zone
 ```
 Предоставляем доступ:
 ```debian 
@@ -665,7 +665,7 @@ $TTL     604800
 isp               A        3.3.3.1
 www               A        4.4.4.100
 www               A        4.4.4.100
-internet          CHAME    isp
+internet          CNAME    isp
 ```
 Проверяем работоспособность `systemctl status named`
 ```debian 
@@ -677,7 +677,7 @@ host internet.demo.wsr
 ```debian 
 host isp.demo.wsr
 ```
-## Настройка `IPSEC`:
+## Настройка `IPsec`:
 ### Заходим в `ipsec.conf` на обоих роутерах `RTR-L`: 
 ```debian
 nano /etc/ipsec.conf
