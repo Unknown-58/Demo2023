@@ -1,43 +1,118 @@
+<p><a target="_blank" href="https://app.eraser.io/workspace/r8u5Z8fwp2ldtgEnGQqF" id="edit-in-eraser-github-link"><img alt="Edit in Eraser" src="https://firebasestorage.googleapis.com/v0/b/second-petal-295822.appspot.com/o/images%2Fgithub%2FOpen%20in%20Eraser.svg?alt=media&amp;token=968381c8-a7e7-472a-8ed6-4a6626da5501"></a></p>
+
 # DEMO2023
-
-### :books: [Задание](https://github.com/Unknown-58/Demo2023/blob/main/Doc/Demo2022.pdf)
-
-### :books: [Вариант если у вас Cisco вместо Linux](https://github.com/vladimir-shalnev/DEMO2022)
-
+### :books: [﻿Задание](https://github.com/Unknown-58/Demo2023/blob/main/Doc/Demo2022.pdf) 
+### :books: [﻿Вариант если у вас Cisco вместо Linux](https://github.com/vladimir-shalnev/DEMO2022) 
 # Вариант #1
-
 ### Виртуальные машины и коммутация.
-Необходимо выполнить создание и базовую конфигурацию виртуальных
-машин.
-![image](https://github.com/Pavel58-pnz/Demo2022/blob/main/image/Demo.png)
+![image](https://github.com/Pavel58-pnz/Demo2022/blob/main/image/Demo.png "")
+
 1. На основе предоставленных VM или шаблонов VM создайте отсутствующие виртуальные машины в соответствии со схемой.  
-   -	Характеристики VM установите в соответствии с Таблицей 1;
-   -	Коммутацию (если таковая не выполнена) выполните в соответствии со схемой сети.	 
-2.  Имена хостов в созданных VM должны быть установлены в соответствии со схемой.
-3.  Адресация должна быть выполнена в соответствии с Таблицей 1;
-4.  Обеспечьте VM дополнительными дисками, если таковое необходимо в соответствии с Таблицей 1;
+    -  Характеристики VM установите в соответствии с Таблицей 1;
+    -  Коммутацию (если таковая не выполнена) выполните в соответствии со схемой сети.
+2. Имена хостов в созданных VM должны быть установлены в соответствии со схемой.
+3. Адресация должна быть выполнена в соответствии с Таблицей 1;
+4. Обеспечьте VM дополнительными дисками, если таковое необходимо в соответствии с Таблицей 1;
 ## Таблица 1. Характеристики VM
-|Name VM         |ОС                  |RAM             |CPU             |IP                    |Additionally                       |
-|  ------------- | -------------      | -------------  |  ------------- |  -------------       |  -------------                    |  
-|ISP             |Debian 11           |2 GB            |2               |3.3.3.1/24            |                                   |
-|                |                    |                |                |4.4.4.1/24            |                                   |
-|                |                    |                |                |5.5.5.1/24            |                                   |
-|RTR-L           |Debian 11           |2 GB            |2/4             |4.4.4.100/24          |                                   |
-|                |                    |                |                |192.168.101.254/24    |                                   |
-|RTR-R           |Debian 11           |2 GB            |2/4             |5.5.5.100/24          |                                   |
-|                |                    |                |                |172.16.101.254 /24    |                                   |
-|SRV             |Debian 11/ Win 2019 |2 GB /4 GB      |2/4             |192.168.101.200/24    |Доп диски 2 шт по 5 GB             |
-|WEB-L           |Debian 11           |2 GB            |2               |192.168.101.100/24    |                                   |
-|WEB-R           |Debian 11           |2 GB            |2               |172.16.101.100/24     |                                   |
-|CLI             |Win 10              |4 GB            |4               |3.3.3.10/24           |                                   |
+Name VM
+
+ОС
+
+RAM
+
+CPU
+
+IP
+
+Additionally
+
+ISP
+
+Debian 11
+
+2 GB
+
+2
+
+3.3.3.1/24
+
+4.4.4.1/24
+
+5.5.5.1/24
+
+RTR-L
+
+Debian 11
+
+2 GB
+
+2/4
+
+4.4.4.100/24
+
+192.168.101.254/24
+
+RTR-R
+
+Debian 11
+
+2 GB
+
+2/4
+
+5.5.5.100/24
+
+172.16.101.254 /24
+
+SRV
+
+Debian 11/ Win 2019
+
+2 GB /4 GB
+
+2/4
+
+192.168.101.200/24
+
+Доп диски 2 шт по 5 GB
+
+WEB-L
+
+Debian 11
+
+2 GB
+
+2
+
+192.168.101.100/24
+
+WEB-R
+
+Debian 11
+
+2 GB
+
+2
+
+172.16.101.100/24
+
+CLI
+
+Win 10
+
+4 GB
+
+4
+
+3.3.3.10/24
 
 ### 1. На основе предоставленных ВМ или шаблонов ВМ создайте отсутствующие виртуальные машины в соответствии со схемой.
 Убедитесь что все ВМ созданы в соотведствии со схемой 
 
-![image](https://raw.githubusercontent.com/Unknown-58/Demo2023/main/image/Demo02.jpg)
+![image](https://raw.githubusercontent.com/Unknown-58/Demo2023/main/image/Demo02.jpg "")
 
-## Изменение имена машин (Меняем {name} на всех машина: например (ISP, RTR-R, RTR-L т.д. )) 
-```debian 
+## Изменение имена машин (Меняем {name} на всех машина: например (ISP, RTR-R, RTR-L т.д. ))
+```debian
 echo {name} > /etc/hostname
 ```
 ## Устанавливаем необходимые пакеты > Обязательно установить стандартные системные утилиты < :
@@ -56,6 +131,7 @@ deb http://mirror.corbina.net/debian/ buster-updates main
 deb-src http://mirror.corbina.net/debian/ buster-updates main
 ```
 или
+
 ```debian
 deb http://deb.debian.org/debian bullseye main contrib non-free
 deb-src http://deb.debian.org/debian bullseye main contrib non-free
@@ -67,6 +143,7 @@ deb http://deb.debian.org/debian bullseye-updates main contrib non-free
 deb-src http://deb.debian.org/debian bullseye-updates main contrib non-free
 ```
 или
+
 ```debian
 deb http://mirror.yandex.ru/debian bullseye main
 deb-src http://mirror.yandex.ru/debian bullseye main
@@ -77,14 +154,15 @@ deb-src http://mirror.yandex.ru/debian bullseye-updates main
 deb https://mirror.yandex.ru/debian-security bullseye-security main
 deb-src https://mirror.yandex.ru/debian-security bullseye-security main
 ```
-### Проверяет наличие обновлений для пакетов 
-```debian 
+### Проверяет наличие обновлений для пакетов
+```debian
 apt-get update
 ```
 А также обновляем их
-```debian 
+
+```debian
 apt-get upgrade
-``` 
+```
 ### ISP:
 ```debian
 apt install bind9 bind9utils dnsutils chrony openssh-server tcpdump -y
@@ -94,6 +172,7 @@ apt install bind9 bind9utils dnsutils chrony openssh-server tcpdump -y
 apt install openssh-server firewalld chrony tcpdump wireguard wireguard-tools -y
 ```
 или (если настраиваете IPsec)
+
 ```debian
 apt install openssh-server firewalld chrony tcpdump strongswan -y
 ```
@@ -102,6 +181,7 @@ apt install openssh-server firewalld chrony tcpdump strongswan -y
 apt install openssh-server firewalld chrony tcpdump wireguard wireguard-tools -y
 ```
 или (если настраиваете IPsec)
+
 ```debian
 apt install openssh-server firewalld chrony tcpdump strongswan -y
 ```
@@ -113,21 +193,23 @@ apt install host chrony openssh-server cifs-utils -y
 ```debian
 apt install host chrony openssh-server cifs-utils -y
 ```
-
 ## После настраиваем сетевую связность машин
 ### Раскоментируем `net.ipv4.ip_forward=1` для всех машин:
 ```debian
 nano /etc/sysctl.conf
 ```
 Проверяем ipv4
+
 ```debian
 sysctl -p
 ```
 Должно показать
+
 ```
 net.ipv4.ip_forward=1
 ```
 Для проверки `ens{#}` используем:
+
 ```debian
 ip a
 ```
@@ -152,7 +234,8 @@ address 5.5.5.1
 netmask 255.255.255.0
 ```
 Провести перезагрузку сервиса на всех машинах после настройки:
-```debian 
+
+```debian
 service networking restart
 ```
 ### RTR-L:
@@ -215,6 +298,7 @@ gateway 172.16.101.254
 nano /etc/ssh/sshd_config
 ```
 Раскоментируем `PermitRootLogin` и пришем `yes`:
+
 ```debian
 #Authentication:
 
@@ -228,34 +312,41 @@ PermitRootLogin yes
 systemctl restart ssh
 ```
 Проверяем работаспособность `SSH` пишем:
+
 ```debian
 ssh localhost
 ```
 Аналогично делаем на следующих машинах `RTR-L` `RTR-R` `WEB-R` 
+
 ## Настройка `Firewalld`:
 ### Заходим на `RTR-L` и проверяем активность зон:
 ```debian
 firewall-cmd --get-active-zones
 ```
 Посмотрим какие зоны мы можем настроить:
+
 ```debian
 firewall-cmd --list-all-zones
 ```
 Создаём зоны внутренею `trusted` и внешнию `external`:
 
 В сторону ISP, смотрит `external`:
+
 ```debian
 firewall-cmd --zone=external --add-interface=ens33
 ```
 В сторону WEB-L, смотрит `trusted`:
+
 ```debian
 firewall-cmd --zone=trusted --add-interface=ens36
 ```
 Проверяем создались ли зоны:
+
 ```debian
 firewall-cmd --get-active-zones
 ```
 Разрешаем доступы для `http` `https` `DNS`:
+
 ```debian
 firewall-cmd --zone=external --add-service=http
 ```
@@ -267,28 +358,34 @@ firewall-cmd --zone=external --add-service=dns
 ```
 Пробрасываем следующие порты `80` `22` `53` port-SSH: `2222` `2244` могу поменяться:
 Пробрасываем порты `80` `22` `2222` на WEB-L для `http` `https` `SSH`:
+
 ```debian
 firewall-cmd --zone=external --add-forward-port=port=2222:proto=tcp:toport=22:toaddr=192.168.101.100
 ```
 IP-address может поменяться
 Пробрасываем порт `53` на SRV для DNS:
+
 ```debian
 firewall-cmd --zone=external --add-forward-port=port=53:proto=udp:toport=53:toaddr=192.168.101.200
 ```
 И для VPN пробрасываем порт `123456`:
+
 ```debian
 firewall-cmd --zone=external --add-port=12345/udp
 ```
 Порт нужно поменять на свой
 Проверяем настройки `firewalld`:
+
 ```debian
 firewall-cmd --zone=external --list-all
 ```
 Сохраняем настройки `firewalld`:
+
 ```debian
 firewall-cmd --runtime-to-permanent
 ```
 Перезагружаем `firewalld`:
+
 ```debian
 firewall-cmd --reload
 ```
@@ -297,24 +394,29 @@ firewall-cmd --reload
 firewall-cmd --get-active-zones
 ```
 Посмотрим какие зоны мы можем настроить
+
 ```debian
 firewall-cmd --list-all-zones
 ```
 Создаём зоны внутренею `trusted` и внешнию `external`:
 
 В сторону ISP, смотрит `external`:
+
 ```debian
 firewall-cmd --zone=external --add-interface=ens33
 ```
 В сторону WEB-R, смотрит `trusted`:
+
 ```debian
 firewall-cmd --zone=trusted --add-interface=ens36
 ```
 Проверяем создались ли зоны:
+
 ```debian
 firewall-cmd --get-active-zones
 ```
 Разрешаем доступы для `http` `https` `DNS`:
+
 ```debian
 firewall-cmd --zone=external --add-service=http
 ```
@@ -326,31 +428,37 @@ firewall-cmd --zone=external --add-service=dns
 ```
 Пробрасываем следующие порты `80` `22` `53` port-SSH: `2222` `2244` могу поменяться:
 Пробрасываем порты `80` `22` `2244` на WEB-R для `http` `https` `SSH`:
+
 ```debian
 firewall-cmd --zone=external --add-forward-port=port=2244:proto=tcp:toport=22:toaddr=172.16.101.100
 ```
 IP-address может поменяться
 Пробрасывать порт `53` на `RTR-R` для DNS не нужно:
 И для VPN пробрасываем порт `123456`:
+
 ```debian
 firewall-cmd --zone=external --add-port=12345/udp
 ```
 Порт нужно поменять на свой
 Проверяем настройки `firewalld`:
+
 ```debian
 firewall-cmd --zone=external --list-all
 ```
 Сохраняем настройки `firewalld`:
+
 ```debian
 firewall-cmd --runtime-to-permanent
 ```
 Перезагружаем `firewalld`:
+
 ```debian
 firewall-cmd --reload
 ```
 ## Настройка `GRE-tunnel`:
 ### RTR-R GRE-tunnel:
 Временный тунель после перезагрузки исчезнет:
+
 ```debian
 ip tunnel add gre1 mode gre remote 4.4.4.100 local 5.5.5.100 ttl 255
 ip addr add 1.1.1.2/30 dev gre1
@@ -358,10 +466,12 @@ ip link set gre1 up
 ip route add 192.168.1.0/24 via 1.1.1.1 dev gre1
 ```
 Не исчезает после переустановки):
+
 ```debian
 nano /etc/network/interfaces
 ```
 либо так
+
 ```debian
 auto gre1
 iface gre1 inet static
@@ -372,6 +482,7 @@ iface gre1 inet static
     post-down sudo ip link set gre1 down
 ```
 либо вот так)
+
 ```debian
 auto ens33
 iface ens33 inet static
@@ -397,6 +508,7 @@ netmask 255.255.255.0
 ```
 ### RTR-L GRE-tunnel:
 Временный тунель после перезагрузки исчезнет:
+
 ```debian
 ip tunnel add gre1 mode gre remote 5.5.5.100 local 4.4.4.100 ttl 255
 ip addr add 1.1.1.1/30 dev gre1
@@ -404,10 +516,12 @@ ip link set gre1 up
 ip route add 172.16.1.0/24 via 1.1.1.2 dev gre1
 ```
 Не исчезает после переустановки):
+
 ```debian
 nano /etc/network/interfaces
 ```
 либо так
+
 ```debian
 auto gre1
 iface gre1 inet static
@@ -418,6 +532,7 @@ iface gre1 inet static
     post-down sudo ip link set gre1 down
 ```
 либо вот так)
+
 ```debian
 auto ens33
 iface ens33 inet static
@@ -444,6 +559,7 @@ netmask 255.255.255.0
 ## Настройка `Wireguard`:
 ### Заходим в `RTR-L`:
 Создаём папку для ключей:
+
 ```debian
 mkdir /etc/wireguard/keys
 ```
@@ -454,26 +570,32 @@ cd /etc/wireguard/keys
 ls
 ```
 Создаём ключ для `SRV`:
+
 ```debian
 wg genkey | tee srv-sec.key | wg pubkey > srv-pub.key
 ```
 Проверяем появились ли ключи:
+
 ```debian
 ls -l
 ```
 Создаём ключ для `CLI`:
+
 ```debian
 wg genkey | tee cli-sec.key | wg pubkey > cli-pub.key
 ```
 Проверяем появились ли ключи:
+
 ```debian
 ls -l
 ```
 Прописываем ключи в конфиг:
+
 ```debian
 cat srv-sec.key cli-pub.key >> /etc/wireguard/wg0.conf
 ```
 Заходим и редактируем этот файл `/etc/wireguard/wg0.conf`:
+
 ```debian
 [Interface]
 Address = 1.1.1.1/30
@@ -484,11 +606,11 @@ PrivateKey = cdexswzaqQAZWSXEDC123456789
 PublicKey = 123456789QAZWSXEDCcdexswzaq
 AllowedIPs = 1.1.1.0/30, 172.16.1.0/24
 ```
-- Там где `Address` - ставим любой IP-address например: `1.1.1.1/30`.
-- Там где `ListenPort` - ставим наш `123456`.
-- Там где `AllowedIPs` - должно быть IP-address `1.1.1.0/30` и наше посети `172.16.101.0/24`.
-- Там где `PrivateKey` - первый созданный ключ.
-- Там где `PubliKey` - второй созданный ключ.
+- Там где `Address`  - ставим любой IP-address например: `1.1.1.1/30` .
+- Там где `ListenPort`  - ставим наш `123456` .
+- Там где `AllowedIPs`  - должно быть IP-address `1.1.1.0/30`  и наше посети `172.16.101.0/24` .
+- Там где `PrivateKey`  - первый созданный ключ.
+- Там где `PubliKey`  - второй созданный ключ.
 #### Теперь сравниваем:
 ```debian
 cat /etc/wireguard/wg0.conf
@@ -500,10 +622,12 @@ cat srv-sec.key
 cat cli-pub.key
 ```
 Запускаем сервис:
+
 ```debian
 systemctl enable --now wg-quick@wg0
 ```
 Проверяем:
+
 ```debian
 systemctl status wg-quick@wg0
 ```
@@ -515,22 +639,27 @@ ip route
 ```
 ### Далее переходим на `RTR-R`:
 Создаём папку для ключей:
+
 ```debian
 mkdir /etc/wireguard/keys
 ```
 Переходим `RTR-L`:
+
 ```debian
 scp cli-sec.key srv-pub.key 5.5.5.100:/etc/wireguard/keys
 ```
 Провереяем на `RTR-R` ключи:
+
 ```debian
 ls -l /etc/wireguard/keys
 ```
 Прописываем ключи в конфиг:
+
 ```debian
 cat cli-sec.key srv-pub.key >> /etc/wireguard/wg0.conf
 ```
 Заходим и редактируем этот файл `/etc/wireguard/wg0.conf`:
+
 ```debian
 [Interface]
 Address = 1.1.1.2/30
@@ -542,11 +671,11 @@ Endpoint = 4.4.4.100:12345
 AllowedIPs = 1.1.1.0/30, 192.168.1.0/24
 PersistentKeepalive = 10
 ```
-- Там где `Address` - ставим любой IP-address например: `1.1.1.2/30`.
-- Там где `Endpoint` - ставим наш `4.4.4.100:123456`.
-- Там где `AllowedIPs` - должно быть IP-address `1.1.1.0/30` и наше посети `192.168.101.0/24`.
-- Там где `PrivateKey` - первый созданый ключ.
-- Там где `PubliKey` - второй созданый ключ.
+- Там где `Address`  - ставим любой IP-address например: `1.1.1.2/30` .
+- Там где `Endpoint`  - ставим наш `4.4.4.100:123456` .
+- Там где `AllowedIPs`  - должно быть IP-address `1.1.1.0/30`  и наше посети `192.168.101.0/24` .
+- Там где `PrivateKey`  - первый созданый ключ.
+- Там где `PubliKey`  - второй созданый ключ.
 #### Теперь сравниваем:
 ```debian
 cat /etc/wireguard/wg0.conf
@@ -558,10 +687,12 @@ cat srv-sec.key
 cat cli-pub.key
 ```
 Запускаем сервис:
+
 ```debian
 systemctl enable --now wg-quick@wg0
 ```
 Проверяем:
+
 ```debian
 systemctl status wg-quick@wg0
 ```
@@ -573,6 +704,7 @@ ip route
 ```
 ## Настройка `DNS`:
 Заходим на всех машинах `/etc/resolv.conf`:
+
 #### `ISP`:
 ```debian
 domain demo.wsr
@@ -580,9 +712,11 @@ search demo.wsr
 nameserver 3.3.3.1
 ```
 ##### `CLI`:
-![image](https://github.com/Unknown-58/Demo2023/blob/main/image/1.png)
+![image](https://github.com/Unknown-58/Demo2023/blob/main/image/1.png "")
+
 ##### `SRV`:
-![image](https://github.com/Unknown-58/Demo2023/blob/main/image/2.png)
+![image](https://github.com/Unknown-58/Demo2023/blob/main/image/2.png "")
+
 ##### `RTR-L`:
 ```debian
 domain int.demo.wsr
@@ -590,24 +724,28 @@ search int.demo.wsr
 nameserver 192.168.100.200
 ```
 `RTR-R`:
+
 ```debian
 domain int.demo.wsr
 search int.demo.wsr
 nameserver 4.4.4.100
 ```
 `WEB-L`:
+
 ```debian
 domain int.demo.wsr
 search int.demo.wsr
 nameserver 192.168.100.200
 ```
 `WEB-R`:
+
 ```debian
 domain int.demo.wsr
 search int.demo.wsr
 nameserver 4.4.4.100
 ```
 Далее необходимо отредактировать файл `/etc/bind/named.conf.options`:
+
 ```debian
 listeb-on { any; };
 recursion no;
@@ -617,6 +755,7 @@ dnssec-validation no;
 listen-on-v6 { no; };
 ```
 Теперь второй файл `/etc/bind/named.conf.local`:
+
 ```debian
 zone "demo.wsr" {
       type master;
@@ -625,19 +764,23 @@ zone "demo.wsr" {
 };
 ```
 Создаём папку:
-```debian 
+
+```debian
 mkdir /opt/dns
 ```
 Производим копирование:
-```debian 
+
+```debian
 cp /etc/bind/db.local /opt/dns/demo.wsr.zone
 ```
 Предоставляем доступ:
-```debian 
+
+```debian
 chmod 665 /opt/dns/demo.wsr.zone
 ```
 Меняем параметры безопасности `/etc/apparmor.d/usr.sbin.named`, вот так должно выглядить:
-```debian 
+
+```debian
 /etc/bind/** r,
 /var/lib/bind/** rw,
 /var/lib/bind/ rw,
@@ -647,7 +790,8 @@ chmod 665 /opt/dns/demo.wsr.zone
 ```
 Перезагружаем `service apparmor restart`.
 Файл зон `nano /opt/dns/demo.wsr.zone`.
-```debian 
+
+```debian
 ;
 ; BIND data file for local loopback interface
 ;
@@ -667,18 +811,19 @@ www               A        4.4.4.100
 www               A        4.4.4.100
 internet          CNAME    isp
 ```
-Проверяем работоспособность `systemctl status named`
-```debian 
+Проверяем работоспособность `systemctl status named` 
+
+```debian
 host www.demo.wsr
 ```
-```debian 
+```debian
 host internet.demo.wsr
 ```
-```debian 
+```debian
 host isp.demo.wsr
 ```
 ## Настройка `IPsec`:
-### Заходим в `ipsec.conf` на обоих роутерах `RTR-L`: 
+### Заходим в `ipsec.conf` на обоих роутерах `RTR-L`:
 ```debian
 nano /etc/ipsec.conf
 ```
@@ -686,13 +831,11 @@ nano /etc/ipsec.conf
 config setup
    charondebug="all"
    uniqueids=yes
-
 conn %default
    ikelifetime=60m
    keylife=20m
    rekeymargin=3m
    keyingtries=1
-
 conn vpn-ipsec
    auto=start
    type=tunnel
@@ -711,13 +854,11 @@ nano /etc/ipsec.conf
 config setup
    charondebug="all"
    uniqueids=yes
-
 conn %default
    ikelifetime=60m
    keylife=20m
    rekeymargin=3m
    keyingtries=1
-
 conn vpn-ipsec
    auto=start
    type=tunnel
@@ -736,14 +877,21 @@ nano /etc/ipsec.secrets
 4.4.4.100 5.5.5.100 : PSK "qwertyuiop123456789"
 ```
 Запускаем `ipsec` или перезагружаем:
+
 ```debian
 ipsec start
 ```
 или
+
 ```debian
 ipsec restart
 ```
 Проверяем в `ISP` через `tcpdump`:
+
 ```debian
 tcpdump | grep ESP
 ```
+
+
+
+<!--- Eraser file: https://app.eraser.io/workspace/r8u5Z8fwp2ldtgEnGQqF --->
