@@ -5,7 +5,7 @@
 ### :books: [﻿Вариант если у вас Cisco вместо Linux](https://github.com/vladimir-shalnev/DEMO2022) 
 # Вариант #1
 ### Виртуальные машины и коммутация.
-![image](https://github.com/Unknown-58/Demo2022/blob/main/image/Demo.png "")
+![image](https://github.com/Unknown-58/Demo2023/blob/main/image/Demo.png)
 
 1. На основе предоставленных VM или шаблонов VM создайте отсутствующие виртуальные машины в соответствии со схемой.  
     -  Характеристики VM установите в соответствии с Таблицей 1;
